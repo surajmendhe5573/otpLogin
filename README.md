@@ -38,5 +38,5 @@ Follow these steps to set up the project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/otp-authentication-system.git
+   git clone https://github.com/surajmendhe5573/otpLogin.git
    cd otp-authentication-system
