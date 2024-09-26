@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+from .models import OTP 
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
@@ -44,13 +45,13 @@ class VerifyOTPSerializer(serializers.Serializer):
     otp = serializers.CharField(max_length=6)
 
     def validate(self, data):
+        email = data['email']
+        otp = data['otp']
         try:
-            user = User.objects.get(email=data['email'])
-            otp_instance = OTP.objects.get(user=user, otp=data['otp'])
-        except (User.DoesNotExist, OTP.DoesNotExist):
-            raise serializers.ValidationError("Invalid OTP or Email.")
+            otp_record = OTP.objects.get(user__email=email, otp=otp)
+            # Optionally, you can add checks for expiration here
+        except OTP.DoesNotExist:
+            raise serializers.ValidationError("Invalid OTP or email.")
         
-        if otp_instance.created_at < timezone.now() - timedelta(minutes=5):
-            raise serializers.ValidationError("OTP expired.")
-
+        data['user'] = otp_record.user  # Attach the user to the validated data
         return data
