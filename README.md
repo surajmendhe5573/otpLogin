@@ -1,6 +1,6 @@
 # OTP-Based User Authentication System
 
-A Django Rest Framework-based system that enables users to register, log in, and authenticate using a One-Time Password (OTP) sent to their email. This project demonstrates how to securely manage user authentication using OTP verification.
+A Django Rest Framework-based system that enables users to register, log in, and authenticate using a One-Time Password (OTP) sent to their email. This project demonstrates how to securely manage user authentication using OTP verification...
 
 ## Features
 
